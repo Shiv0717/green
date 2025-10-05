@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Star, Leaf, Truck, Shield, Clock } from "lucide-react";
+import { ArrowRight, Star, Leaf, Truck, Shield } from "lucide-react";
 
 const AllCategoriesProduct = () => {
   const navigate = useNavigate();
@@ -138,21 +138,21 @@ const AllCategoriesProduct = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
       {categories.map((category) => (
         <section key={category.id} className="relative">
           {/* Category Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
             <div className="mb-6 lg:mb-0">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-black flex items-center justify-center">
-                  <Leaf className="w-5 h-5 text-white" />
+                <div className="w-12 h-12 bg-black flex items-center justify-center">
+                  <Leaf className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-3xl lg:text-4xl font-medium text-black tracking-tight">
-                    {category.name}
+                  <h2 className="text-3xl lg:text-4xl font-normal text-black tracking-tight mb-2">
+                    {category.name.toUpperCase()}
                   </h2>
-                  <p className="text-sm text-gray-600 mt-1 tracking-wide">
+                  <p className="text-base text-gray-600 tracking-wide max-w-md">
                     {category.description}
                   </p>
                 </div>
@@ -163,65 +163,81 @@ const AllCategoriesProduct = () => {
               onClick={() => navigate(`/category/${category.id}`)}
               className="group flex items-center gap-2 text-black hover:text-gray-600 font-normal text-sm border-b border-black hover:border-gray-600 transition-all duration-300 pb-1 w-fit tracking-wide"
             >
-              VIEW ALL
+              EXPLORE COLLECTION
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {category.products.map((product) => (
               <div 
                 key={product.id} 
-                className="group cursor-pointer bg-white border border-gray-100 hover:border-gray-300 transition-all duration-300"
+                className="group cursor-pointer bg-white border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-sm"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
                 {/* Product Image */}
-                <div className="relative overflow-hidden bg-gray-50">
+                <div className="relative overflow-hidden bg-gray-50 aspect-square">
                   <img 
                     src={product.img} 
                     alt={product.name} 
-                    className="w-full h-60 md:h-72  object-cover transition-transform duration-500 group-hover:scale-105" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                   />
                   
                   {/* Eco Badge */}
                   {product.ecoBadge && (
-                    <div className="absolute top-3 left-3 bg-black text-white px-2 py-1 text-xs font-normal flex items-center gap-1 tracking-wide">
+                    <div className="absolute top-4 left-4 bg-black text-white px-3 py-1.5 text-xs font-normal flex items-center gap-1.5 tracking-wide">
                       <Leaf className="w-3 h-3" />
-                      ECO
+                      ECO-FRIENDLY
                     </div>
                   )}
+
+                  {/* Rating Badge */}
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2.5 py-1.5 flex items-center gap-1 text-xs font-normal">
+                    <Star className="w-3 h-3 fill-black text-black" />
+                    <span>{product.rating}</span>
+                  </div>
                 </div>
                 
                 {/* Product Info */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-sm text-black flex-1 pr-3 tracking-wide">
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-normal text-black flex-1 pr-4 tracking-wide leading-tight">
                       {product.name}
                     </h3>
-                    <span className="text-sm text-black whitespace-nowrap">
+                    <span className="text-lg font-normal text-black whitespace-nowrap">
                       {product.price}
                     </span>
                   </div>
                   
-                  {/* Rating */}
-                  <div className="flex items-center gap-2 mb-3">
+                  {/* Rating & Reviews */}
+                  <div className="flex items-center gap-2 mb-4">
                     <div className="flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-black text-black" />
-                      <span className="text-xs text-black">{product.rating}</span>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          className={`w-3 h-3 ${
+                            star <= product.rating
+                              ? 'fill-black text-black'
+                              : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
                     </div>
-                    <span className="text-xs text-gray-500">({product.reviews})</span>
+                    <span className="text-xs text-gray-600 tracking-wide">
+                      ({product.reviews} reviews)
+                    </span>
                   </div>
                   
                   {/* Features */}
-                  <div className="flex items-center gap-3 text-xs text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <Truck className="w-3 h-3" />
-                      <span>Shipping</span>
+                  <div className="flex items-center gap-4 text-xs text-gray-600 tracking-wide">
+                    <div className="flex items-center gap-1.5">
+                      <Truck className="w-3.5 h-3.5" />
+                      <span>Free Shipping</span>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Shield className="w-3 h-3" />
-                      <span>Warranty</span>
+                    <div className="flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5" />
+                      <span>5-Year Warranty</span>
                     </div>
                   </div>
                 </div>
@@ -231,7 +247,7 @@ const AllCategoriesProduct = () => {
           
           {/* Section Divider */}
           {category.id !== categories.length && (
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent mt-16" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent mt-20" />
           )}
         </section>
       ))}
