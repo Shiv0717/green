@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { User, ShoppingBag, MapPin, Settings } from "lucide-react";
+import { User, ShoppingBag, MapPin, Settings,LogOut } from "lucide-react";
 
 const links = [
   { name: "PROFILE", path: "overview", icon: User },
   { name: "ORDERS", path: "orders", icon: ShoppingBag },
   { name: "ADDRESS", path: "address", icon: MapPin },
   { name: "SETTINGS", path: "settings", icon: Settings },
+  { name: "LOGOUT", path: "logout", icon: LogOut },
 ];
 
 const Sidebar = () => {
