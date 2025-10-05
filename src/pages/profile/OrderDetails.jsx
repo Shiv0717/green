@@ -95,8 +95,8 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white ">
+      <div className="max-w-7xl mx-auto ">
         {/* Header */}
         <div className="mb-8">
           <button className="flex items-center text-sm tracking-wide text-gray-600 hover:text-black transition-colors mb-4">
