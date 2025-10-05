@@ -13,7 +13,7 @@ const AllCategoriesProduct = () => {
       products: [
         { 
           id: 1, 
-          name: "Eco Sofa", 
+          name: "Modular Sofa", 
           img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=500&fit=crop", 
           price: "$899",
           rating: 4.8,
@@ -22,7 +22,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 2, 
-          name: "Coffee Table", 
+          name: "Minimal Table", 
           img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=500&fit=crop", 
           price: "$299",
           rating: 4.6,
@@ -31,7 +31,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 3, 
-          name: "Bookshelf", 
+          name: "Storage Shelf", 
           img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=500&fit=crop", 
           price: "$459",
           rating: 4.9,
@@ -40,7 +40,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 4, 
-          name: "Accent Chair", 
+          name: "Lounge Chair", 
           img: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", 
           price: "$349",
           rating: 4.7,
@@ -56,7 +56,7 @@ const AllCategoriesProduct = () => {
       products: [
         { 
           id: 1, 
-          name: "Organic Bed", 
+          name: "Platform Bed", 
           img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&h=500&fit=crop", 
           price: "$1299",
           rating: 4.9,
@@ -65,7 +65,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 2, 
-          name: "Nightstand", 
+          name: "Bedside Table", 
           img: "https://images.unsplash.com/photo-1586105251261-72a756497a11?w=500&h=500&fit=crop", 
           price: "$199",
           rating: 4.5,
@@ -74,7 +74,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 3, 
-          name: "Wardrobe", 
+          name: "Storage Wardrobe", 
           img: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=500&h=500&fit=crop", 
           price: "$799",
           rating: 4.7,
@@ -83,7 +83,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 4, 
-          name: "Dresser", 
+          name: "Wood Dresser", 
           img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&h=500&fit=crop", 
           price: "$599",
           rating: 4.8,
@@ -117,7 +117,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 3, 
-          name: "Buffet Cabinet", 
+          name: "Side Cabinet", 
           img: "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=500&h=500&fit=crop", 
           price: "$899",
           rating: 4.9,
@@ -126,7 +126,7 @@ const AllCategoriesProduct = () => {
         },
         { 
           id: 4, 
-          name: "Bar Stools", 
+          name: "Counter Stools", 
           img: "https://images.unsplash.com/photo-1503602642458-232111445657?w=500&h=500&fit=crop", 
           price: "$199",
           rating: 4.4,
@@ -144,15 +144,15 @@ const AllCategoriesProduct = () => {
           {/* Category Header */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
             <div className="mb-6 lg:mb-0">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-green-600 flex items-center justify-center">
-                  <Leaf className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 bg-black flex items-center justify-center">
+                  <Leaf className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-4xl lg:text-5xl font-bold text-black">
+                  <h2 className="text-3xl lg:text-4xl font-medium text-black tracking-tight">
                     {category.name}
                   </h2>
-                  <p className="text-lg text-gray-600 mt-2">
+                  <p className="text-sm text-gray-600 mt-1 tracking-wide">
                     {category.description}
                   </p>
                 </div>
@@ -161,19 +161,19 @@ const AllCategoriesProduct = () => {
             
             <button
               onClick={() => navigate(`/category/${category.id}`)}
-              className="group flex items-center gap-2 text-black hover:text-green-600 font-semibold text-lg border-b-2 border-black hover:border-green-600 transition-all duration-300 pb-1 w-fit"
+              className="group flex items-center gap-2 text-black hover:text-gray-600 font-normal text-sm border-b border-black hover:border-gray-600 transition-all duration-300 pb-1 w-fit tracking-wide"
             >
-              View All Collection
-              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+              VIEW ALL
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {category.products.map((product) => (
               <div 
                 key={product.id} 
-                className="group cursor-pointer bg-white border border-gray-200 hover:border-green-300 transition-all duration-300 hover:shadow-lg"
+                className="group cursor-pointer bg-white border border-gray-100 hover:border-gray-300 transition-all duration-300"
                 onClick={() => navigate(`/product/${product.id}`)}
               >
                 {/* Product Image */}
@@ -181,47 +181,47 @@ const AllCategoriesProduct = () => {
                   <img 
                     src={product.img} 
                     alt={product.name} 
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105" 
+                    className="w-full h-60 md:h-72  object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
                   
                   {/* Eco Badge */}
                   {product.ecoBadge && (
-                    <div className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 text-xs font-semibold flex items-center gap-1">
+                    <div className="absolute top-3 left-3 bg-black text-white px-2 py-1 text-xs font-normal flex items-center gap-1 tracking-wide">
                       <Leaf className="w-3 h-3" />
-                      Eco-Friendly
+                      ECO
                     </div>
                   )}
                 </div>
                 
                 {/* Product Info */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-bold text-black group-hover:text-green-700 transition-colors flex-1 pr-4">
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-sm text-black flex-1 pr-3 tracking-wide">
                       {product.name}
                     </h3>
-                    <span className="text-2xl font-bold text-green-600 whitespace-nowrap">
+                    <span className="text-sm text-black whitespace-nowrap">
                       {product.price}
                     </span>
                   </div>
                   
                   {/* Rating */}
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-3">
                     <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-semibold text-black">{product.rating}</span>
+                      <Star className="w-3 h-3 fill-black text-black" />
+                      <span className="text-xs text-black">{product.rating}</span>
                     </div>
-                    <span className="text-sm text-gray-500">({product.reviews} reviews)</span>
+                    <span className="text-xs text-gray-500">({product.reviews})</span>
                   </div>
                   
                   {/* Features */}
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-3 text-xs text-gray-500">
                     <div className="flex items-center gap-1">
                       <Truck className="w-3 h-3" />
-                      <span>Free Shipping</span>
+                      <span>Shipping</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Shield className="w-3 h-3" />
-                      <span>5-Year Warranty</span>
+                      <span>Warranty</span>
                     </div>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ const AllCategoriesProduct = () => {
           
           {/* Section Divider */}
           {category.id !== categories.length && (
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-16" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-100 to-transparent mt-16" />
           )}
         </section>
       ))}

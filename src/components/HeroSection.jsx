@@ -71,13 +71,17 @@ const HeroSection = () => {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-[70vh] min-h-[600px] max-h-[800px] bg-gray-900">
+            <div className="relative w-full h-[70vh] min-h-[600px] max-h-[800px]  overflow-hidden">
               {/* Background Image with Overlay */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${slide.img})` }}
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30" />
+              <div className="absolute inset-0">
+                <img
+                  src={slide.img}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute inset-0 " />
               
               {/* Content */}
               <div className="relative h-full flex items-center">
@@ -132,9 +136,10 @@ const HeroSection = () => {
             </div>
           </SwiperSlide>
         ))}
+        
+        {/* Navigation Buttons */}
+       
       </Swiper>
-
-    
 
       {/* Custom Styles */}
       <style jsx>{`
@@ -148,6 +153,15 @@ const HeroSection = () => {
         .swiper-button-prev {
           background: rgba(0, 0, 0, 0.3);
           backdrop-filter: blur(10px);
+          width: 50px !important;
+          height: 50px !important;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+          font-size: 20px !important;
+          font-weight: bold;
         }
         @media (max-width: 768px) {
           .swiper-button-next,

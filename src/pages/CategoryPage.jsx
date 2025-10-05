@@ -12,9 +12,9 @@ const CategoryPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-gray-100">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex py-4" aria-label="Breadcrumb">
             <ol className="flex items-center space-x-2">
@@ -22,15 +22,15 @@ const CategoryPage = () => {
                 <li key={breadcrumb.name}>
                   <div className="flex items-center">
                     {index === 0 ? (
-                      <Home className="w-4 h-4 text-gray-400" />
+                      <Home className="w-4 h-4 text-gray-500" />
                     ) : (
                       <ChevronRight className="w-4 h-4 text-gray-400" />
                     )}
                     <a
                       href={breadcrumb.href}
-                      className={`ml-2 text-sm font-medium ${
+                      className={`ml-2 text-sm font-normal ${
                         breadcrumb.current
-                          ? "text-green-600"
+                          ? "text-black"
                           : "text-gray-500 hover:text-gray-700"
                       }`}
                       aria-current={breadcrumb.current ? "page" : undefined}
@@ -47,7 +47,7 @@ const CategoryPage = () => {
 
       {/* Page Content */}
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-2">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Left Sidebar - Filter */}
           <div className="w-full lg:w-80 flex-shrink-0">
             <Filter />

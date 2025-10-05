@@ -26,24 +26,22 @@ const ProductDetailsPage = () => {
   ];
 
   const features = [
-    { icon: Leaf, text: "Eco-Friendly Materials", color: "text-green-600" },
+    { icon: Leaf, text: "Sustainable Materials", color: "text-black" },
     { icon: Truck, text: "Free Shipping", color: "text-gray-600" },
     { icon: Shield, text: "5-Year Warranty", color: "text-gray-600" },
     { icon: RotateCcw, text: "30-Day Returns", color: "text-gray-600" }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-     
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 py-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+        <div className="bg-white">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Product Images */}
             <div className="space-y-4">
               {/* Main Image */}
-              <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+              <div className="aspect-square overflow-hidden bg-gray-50">
                 <img
                   src={productImages[selectedImage]}
                   alt={product.name}
@@ -57,10 +55,10 @@ const ProductDetailsPage = () => {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
+                    className={`aspect-square overflow-hidden border transition-all ${
                       selectedImage === index 
-                        ? 'border-green-600 ring-2 ring-green-100' 
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-black' 
+                        : 'border-gray-200 hover:border-gray-400'
                     }`}
                   >
                     <img
@@ -74,49 +72,49 @@ const ProductDetailsPage = () => {
             </div>
 
             {/* Product Info */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               {/* Header */}
-              <div>
+              <div className="space-y-4">
                 {product.ecoBadge && (
-                  <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                    <Leaf className="w-4 h-4" />
-                    Eco-Friendly
+                  <div className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 text-xs font-normal tracking-wide">
+                    <Leaf className="w-3 h-3" />
+                    ECO-FRIENDLY
                   </div>
                 )}
-                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+                <h1 className="text-2xl lg:text-3xl font-normal text-black tracking-tight">
                   {product.name}
                 </h1>
                 
                 {/* Rating */}
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        className={`w-5 h-5 ${
+                        className={`w-4 h-4 ${
                           star <= (product.rating || 4.5)
-                            ? 'fill-yellow-400 text-yellow-400'
+                            ? 'fill-black text-black'
                             : 'text-gray-300'
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-lg font-semibold text-gray-900">{product.rating || 4.5}</span>
-                  <span className="text-gray-500">({product.reviews || 156} reviews)</span>
+                  <span className="text-sm font-normal text-black">{product.rating || 4.5}</span>
+                  <span className="text-sm text-gray-500">({product.reviews || 156})</span>
                 </div>
 
                 {/* Price */}
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl font-bold text-green-600">{product.price}</span>
+                  <span className="text-2xl font-normal text-black">{product.price}</span>
                   {product.originalPrice && (
-                    <span className="text-2xl text-gray-400 line-through">${product.originalPrice}</span>
+                    <span className="text-lg text-gray-400 line-through">${product.originalPrice}</span>
                   )}
                 </div>
               </div>
 
               {/* Description */}
-              <div className="prose prose-lg">
-                <p className="text-gray-600 leading-relaxed">
+              <div>
+                <p className="text-sm text-gray-600 leading-relaxed tracking-wide">
                   Crafted with sustainable materials and designed for modern living, this {product.name.toLowerCase()} 
                   combines exceptional quality with environmental responsibility. Each piece is carefully constructed 
                   to provide lasting comfort and style while minimizing our ecological footprint.
@@ -127,63 +125,63 @@ const ProductDetailsPage = () => {
               <div className="grid grid-cols-2 gap-4 py-4">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <feature.icon className={`w-5 h-5 ${feature.color}`} />
-                    <span className="text-sm font-medium text-gray-700">{feature.text}</span>
+                    <feature.icon className={`w-4 h-4 ${feature.color}`} />
+                    <span className="text-xs font-normal text-gray-700 tracking-wide">{feature.text}</span>
                   </div>
                 ))}
               </div>
 
               {/* Quantity Selector */}
               <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-900">Quantity</label>
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center border border-gray-300 rounded-lg">
+                <label className="block text-sm font-normal text-black tracking-wide">QUANTITY</label>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center border border-gray-300">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       className="p-3 hover:bg-gray-50 transition-colors"
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-3 h-3" />
                     </button>
-                    <span className="px-4 py-2 text-lg font-semibold min-w-12 text-center">{quantity}</span>
+                    <span className="px-4 py-2 text-sm font-normal min-w-12 text-center border-l border-r border-gray-300">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
                       className="p-3 hover:bg-gray-50 transition-colors"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <span className="text-sm text-gray-500">{product.stock || 15} in stock</span>
+                  <span className="text-xs text-gray-500 tracking-wide">{product.stock || 15} IN STOCK</span>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button className="flex-1 flex items-center justify-center gap-3 bg-green-600 text-white py-4 px-6 font-semibold hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
-                  <ShoppingCart className="w-5 h-5" />
-                  Add to Cart
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <button className="flex-1 flex items-center justify-center gap-3 bg-black text-white py-4 px-6 font-normal text-sm tracking-wide hover:bg-gray-800 transition-all duration-300">
+                  <ShoppingCart className="w-4 h-4" />
+                  ADD TO CART
                 </button>
-                <button className="flex items-center justify-center gap-3 border border-gray-300 text-gray-700 py-4 px-6 font-semibold hover:bg-gray-50 transition-colors">
-                  <Heart className="w-5 h-5" />
+                <button className="flex items-center justify-center border border-gray-300 text-black py-4 px-4 hover:bg-gray-50 transition-colors">
+                  <Heart className="w-4 h-4" />
                 </button>
-                <button className="flex items-center justify-center gap-3 border border-gray-300 text-gray-700 py-4 px-6 font-semibold hover:bg-gray-50 transition-colors">
-                  <Share2 className="w-5 h-5" />
+                <button className="flex items-center justify-center border border-gray-300 text-black py-4 px-4 hover:bg-gray-50 transition-colors">
+                  <Share2 className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Additional Info */}
-              <div className="pt-6 border-t border-gray-200">
-                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+              <div className="pt-6 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-4 text-xs text-gray-600 tracking-wide">
                   <div>
-                    <span className="font-semibold">SKU:</span> GD-{product.id}
+                    <span className="font-normal">SKU:</span> GD-{product.id}
                   </div>
                   <div>
-                    <span className="font-semibold">Category:</span> {categories.find(c => c.products.includes(product))?.name}
+                    <span className="font-normal">CATEGORY:</span> {categories.find(c => c.products.includes(product))?.name}
                   </div>
                   <div>
-                    <span className="font-semibold">Material:</span> Sustainable Wood
+                    <span className="font-normal">MATERIAL:</span> SUSTAINABLE WOOD
                   </div>
                   <div>
-                    <span className="font-semibold">Dimensions:</span> 180 × 90 × 75 cm
+                    <span className="font-normal">DIMENSIONS:</span> 180 × 90 × 75 CM
                   </div>
                 </div>
               </div>
@@ -192,7 +190,7 @@ const ProductDetailsPage = () => {
         </div>
       </div>
 
-      <div>
+      <div className="">
         <SimilarProducts/>
       </div>
     </div>
