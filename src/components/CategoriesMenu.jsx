@@ -43,8 +43,8 @@ const CategoriesMenu = ({ isMenuOpen, toggleMenu }) => {
     <>
       {/* ✅ Desktop Categories Bar with Mega Menu Container */}
       <div className="hidden lg:block bg-white border-b border-gray-100 relative">
-        <div className="max-w-8xl mx-auto px-6">
-          <div className="flex justify-center space-x-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex  space-x-12">
             {Object.keys(categories).map((category) => (
               <div
                 key={category}

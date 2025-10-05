@@ -35,7 +35,27 @@ const ProductDetailsPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 ">
+        {/* Breadcrumbs */}
+<div className="py-4 text-xs text-gray-500 tracking-wide flex items-center gap-1">
+  <button 
+    className="hover:underline"
+    onClick={() => navigate("/")}
+  >
+    Home
+  </button>
+  <span>/</span>
+  <button 
+    className="hover:underline"
+    onClick={() => navigate(`/category/${categories.find(c => c.products.includes(product))?.id}`)}
+  >
+    {categories.find(c => c.products.includes(product))?.name}
+  </button>
+  <span>/</span>
+  <span className="text-gray-900">{product.name}</span>
+</div>
+
+
         <div className="bg-white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Product Images */}

@@ -7,15 +7,17 @@ const CategoriesProduct = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
-  const category = categories.find(c => c.id === parseInt(categoryId));
+  const category = categories.find((c) => c.id === parseInt(categoryId));
 
   if (!category) return <p>Category not found</p>;
 
   return (
     <div className="min-h-screen">
+      {/* Breadcrumbs */}
+     
       {/* Products Grid */}
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {category.products.map((product) => (
             <div
               key={product.id}
@@ -29,7 +31,7 @@ const CategoriesProduct = () => {
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                
+
                 {/* Eco Badge */}
                 {product.ecoBadge && (
                   <div className="absolute top-3 left-3 bg-black text-white px-3 py-1 text-xs font-normal tracking-wide flex items-center gap-1">
@@ -37,7 +39,7 @@ const CategoriesProduct = () => {
                     ECO
                   </div>
                 )}
-                
+
                 {/* Rating Badge */}
                 <div className="absolute top-3 right-3 bg-white bg-opacity-95 backdrop-blur-sm px-2 py-1 flex items-center gap-1 text-xs font-normal">
                   <Star className="w-3 h-3 fill-black text-black" />
@@ -65,8 +67,8 @@ const CategoriesProduct = () => {
                         key={star}
                         className={`w-3 h-3 ${
                           star <= (product.rating || 4.5)
-                            ? 'fill-black text-black'
-                            : 'text-gray-300'
+                            ? "fill-black text-black"
+                            : "text-gray-300"
                         }`}
                       />
                     ))}
@@ -78,7 +80,8 @@ const CategoriesProduct = () => {
 
                 {/* Description */}
                 <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 tracking-wide">
-                  {product.description || `Beautifully crafted ${product.name.toLowerCase()} made from sustainable materials.`}
+                  {product.description ||
+                    `Beautifully crafted ${product.name.toLowerCase()} made from sustainable materials.`}
                 </p>
 
                 {/* Features */}
@@ -101,8 +104,18 @@ const CategoriesProduct = () => {
         <div className="text-center mt-12">
           <button className="inline-flex items-center gap-2 border border-black text-black hover:bg-black hover:text-white px-8 py-4 font-normal text-sm tracking-wide transition-all duration-300">
             LOAD MORE
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
         </div>

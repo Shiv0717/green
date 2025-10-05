@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ShoppingCart, User, Menu, X, Heart, Search, Leaf } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ isMenuOpen, toggleMenu }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = ({ isMenuOpen, toggleMenu }) => {
             </button>
 
             {/* Logo with Icon */}
-            <div className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-black flex items-center justify-center">
                 <Leaf className="w-4 h-4 text-white" />
               </div>
@@ -30,7 +31,7 @@ const Navbar = ({ isMenuOpen, toggleMenu }) => {
                   GREEN DECOR
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Search Bar */}
@@ -57,23 +58,21 @@ const Navbar = ({ isMenuOpen, toggleMenu }) => {
               <Search className="w-4 h-4 text-black" />
             </button>
 
-            {/* Wishlist */}
-            <button className="hidden sm:flex p-2 hover:bg-gray-100 transition-colors">
-              <Heart className="w-4 h-4 text-black" />
-            </button>
+            
+           
 
             {/* User/Login */}
-            <button className="p-2 hover:bg-gray-100 transition-colors">
+            <Link to="/profile" className="p-2 hover:bg-gray-100 transition-colors">
               <User className="w-4 h-4 text-black" />
-            </button>
+            </Link>
 
             {/* Cart */}
-            <button className="relative p-2 hover:bg-gray-100 transition-colors">
+            <Link to="/cart" className="relative p-2 hover:bg-gray-100 transition-colors">
               <ShoppingCart className="w-4 h-4 text-black" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs w-4 h-4 flex items-center justify-center font-normal">
                 3
               </span>
-            </button>
+            </Link>
           </div>
         </div>
 
