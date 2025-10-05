@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Lock, Shield, Truck, ArrowLeft } from 'lucide-react';
-
+import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const [checkoutStep, setCheckoutStep] = useState('shipping');
   const [shippingMethod, setShippingMethod] = useState('standard');
+  const navigate = useNavigate();
 
   const [shippingInfo, setShippingInfo] = useState({
     email: 'john.doe@example.com',
@@ -63,6 +64,16 @@ const Checkout = () => {
       setCheckoutStep('payment');
     } else if (checkoutStep === 'payment') {
       setCheckoutStep('confirmation');
+    }
+  };
+
+  const handleClick = () => {
+    if (checkoutStep === "shipping") {
+      // Continue to payment logic
+      console.log("Continue to Payment");
+    } else {
+      // Navigate to success page
+      navigate("/success");
     }
   };
 
@@ -383,6 +394,7 @@ const Checkout = () => {
               <div className="mt-8">
                 <button
                   type="submit"
+                  onClick={handleClick}
                   className="w-full bg-black text-white py-4 text-sm font-normal tracking-wide hover:bg-gray-800 transition-colors flex items-center justify-center"
                 >
                   {checkoutStep === 'shipping' ? 'CONTINUE TO PAYMENT' : 'PLACE ORDER'}

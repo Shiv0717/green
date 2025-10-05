@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderDetails from "./pages/profile/OrderDetails";
+import OrderSuccess from "./pages/OrderSuccess";
 
 // Lazy load components
 const MainLayout = lazy(() => import("./layouts/MainLayout"));
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
       element: (
         <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
         <Checkout/>
+        </Suspense>
+      ) 
+    },
+    {
+      path: "success", 
+      element: (
+        <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
+       <OrderSuccess/>
         </Suspense>
       ) 
     },
