@@ -19,81 +19,60 @@ const ProfileOrders = lazy(() => import("./pages/profile/ProfileOrders"));
 const ProfileAddress = lazy(() => import("./pages/profile/ProfileAddress"));
 const ProfileSettings = lazy(() => import("./pages/profile/ProfileSettings"));
 
+// Error Boundary for lazy-loaded components
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.error("Error caught in ErrorBoundary:", error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="text-center p-8 text-red-500">
+          Something went wrong. Please refresh the page.
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// Helper to wrap lazy components
+const withSuspense = (Component, fallbackText) => (
+  <ErrorBoundary>
+    <Suspense fallback={<div className="text-center p-8">{fallbackText}</div>}>
+      <Component />
+    </Suspense>
+  </ErrorBoundary>
+);
+
 // Create router
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense fallback={<div className="text-center p-8">Loading...</div>}>
-        <MainLayout />
-      </Suspense>
-    ),
+    element: withSuspense(MainLayout, "Loading Layout..."),
     children: [
-      { 
-        index: true, 
-        element: (
-          <Suspense fallback={<div className="text-center p-8">Loading Home...</div>}>
-            <Home />
-          </Suspense>
-        ) 
-      },
-      { 
-        path: "category/:categoryId", 
-        element: (
-          <Suspense fallback={<div className="text-center p-8">Loading Category...</div>}>
-            <CategoryPage />
-          </Suspense>
-        ) 
-      },
-      { 
-        path: "product/:productId", 
-        element: (
-          <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
-            <ProductDetailsPage />
-          </Suspense>
-        ) 
-      },
-     {
-      path: "cart", 
-      element: (
-        <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
-         <Cart/>
-        </Suspense>
-      ) 
-    },
-    {
-      path: "checkout", 
-      element: (
-        <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
-        <Checkout/>
-        </Suspense>
-      ) 
-    },
-    {
-      path: "success", 
-      element: (
-        <Suspense fallback={<div className="text-center p-8">Loading Product...</div>}>
-       <OrderSuccess/>
-        </Suspense>
-      ) 
-    },
+      { index: true, element: withSuspense(Home, "Loading Home...") },
+      { path: "category/:categoryId", element: withSuspense(CategoryPage, "Loading Category...") },
+      { path: "product/:productId", element: withSuspense(ProductDetailsPage, "Loading Product...") },
+      { path: "cart", element: withSuspense(Cart, "Loading Cart...") },
+      { path: "checkout", element: withSuspense(Checkout, "Loading Checkout...") },
+      { path: "success", element: withSuspense(OrderSuccess, "Loading Success...") },
 
-
-      // Profile section
+      // Profile Section
       {
         path: "profile",
-        element: (
-          <Suspense fallback={<div className="text-center p-8">Loading Profile...</div>}>
-            <ProfileLayout />
-          </Suspense>
-        ),
+        element: withSuspense(ProfileLayout, "Loading Profile Layout..."),
         children: [
-          { index: true, element: <ProfileOverview /> }, // default
-          { path: "overview", element: <ProfileOverview /> },
-          { path: "orders", element: <ProfileOrders /> },
-          { path: "details", element: <OrderDetails/> },
-          { path: "address", element: <ProfileAddress /> },
-          { path: "settings", element: <ProfileSettings /> },
+          { index: true, element: withSuspense(ProfileOverview, "Loading Overview...") },
+          { path: "overview", element: withSuspense(ProfileOverview, "Loading Overview...") },
+          { path: "orders", element: withSuspense(ProfileOrders, "Loading Orders...") },
+          { path: "details", element: withSuspense(OrderDetails, "Loading Details...") },
+          { path: "address", element: withSuspense(ProfileAddress, "Loading Address...") },
+          { path: "settings", element: withSuspense(ProfileSettings, "Loading Settings...") },
         ],
       },
     ],
