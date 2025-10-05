@@ -52,7 +52,7 @@ const CategoriesMenu = ({ isMenuOpen, toggleMenu }) => {
                 onMouseEnter={() => setActiveCategory(category)}
                 onMouseLeave={() => setActiveCategory(null)}
               >
-                <button className="py-4 text-black text-sm font-normal hover:text-gray-600 transition-colors tracking-wide border-b-2 border-transparent hover:border-black">
+                <button className="py-4 text-gray-500 text-[12px] font-normal hover:text-gray-600 transition-colors tracking-wide border-b-2 border-transparent hover:border-black">
                   {category}
                 </button>
               </div>
