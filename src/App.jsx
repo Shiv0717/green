@@ -6,6 +6,7 @@ import Checkout from "./pages/Checkout";
 import OrderDetails from "./pages/profile/OrderDetails";
 import OrderSuccess from "./pages/OrderSuccess";
 import login from "./pages/login";
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy load components
 const MainLayout = lazy(() => import("./layouts/MainLayout"));
@@ -54,6 +55,7 @@ const withSuspense = (Component, fallbackText) => (
 const router = createBrowserRouter([
 
   { path: "login", element: withSuspense(login, "Loading login...") },
+  { path: "*", element: withSuspense(NotFound, "Page not found...") },
   {
     path: "/",
     element: withSuspense(MainLayout, "Loading Layout..."),
