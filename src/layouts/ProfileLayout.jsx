@@ -1,10 +1,11 @@
 import React from "react";
 import Sidebar from "../components/profile/Sidebar";
 import { Outlet } from "react-router-dom";
-
+import ScrollToTop from "../utils/ScrollToTop";
 const ProfileLayout = () => {
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row">
           {/* Sidebar - Sticky with precise positioning */}
